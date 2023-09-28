@@ -1,0 +1,19 @@
+[Unit]
+Description=endlessday.services
+
+[Service]
+WorkingDirectory=/home/endlessday.services/app
+ExecStart=/usr/bin/dotnet /home/endlessday.services/app/endlessday.services.dll
+StandardOutput=file:/home/endlessday.services/app/output.log
+StandardError=file:/home/endlessday.services/app/error.log
+Restart=always
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=endlessday.services
+User=endlessday.services
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+EnvironmentFile=/etc/environment
+
+[Install]
+WantedBy=multi-user.target
